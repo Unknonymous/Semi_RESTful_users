@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'users/css/styles.css' %}">
+    <!-- <link rel="stylesheet" href="C:\Users\user\Documents\CodingDojo\Django\Holder12\srusers\apps\users\static\users\css\styles.css"> -->
+    <title>Users Index</title>
+</head>
+
+<body>
+
+    <div id="wrapper">
+        <h1>User {{ user.id }}</h1>
+        <br><br>
+        <h3><span class='lite'>Full Name: </span>{{ user.first_name }} {{ user.last_name }}</h3>
+        <h3><span class='lite'>Email: </span>{{ user.email }}</h3>
+        <h3><span class='lite'>Created At: </span>{{ user.created_at }}</h3>
+        <br>
+        <a href="{% url 'users:editUser' id=user.id %}">Edit</a>
+        |
+        <a href="{% url 'users:userDelete' id=user.id %}">Delete</a>
+        |
+        <a href="{% url 'users:list' %}">List</a>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'users/css/styles.css' %}">
+    <!-- <link rel="stylesheet" href="C:\Users\user\Documents\CodingDojo\Django\Holder12\srusers\apps\users\static\users\css\styles.css"> -->
+    <title>Users Index</title>
+</head>
+<body>
+    <div id="wrapper">
+        <table id="userTable">
+            <tr>
+                <th>id</th>
+                <th>Full_Name</th>
+                <th>Email</th>
+                <th>Created At</th>
+                <th>Actions</th>
+            </tr>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td><a href="{% url 'users:show_user' id=user.id %}">{{ user.first_name }} {{ user.last_name }}</a></td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.created_at }}</td>
+                <td>
+                    <a href="{% url 'users:show_user' id=user.id %}">Show</a>
+                    <a href="{% url 'users:editUser' id=user.id %}">Edit</a>
+                    <a href="{% url 'users:userDelete' id=user.id %}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <div id="add">
+            <a href="{% url 'users:newUser' %}">Add a new user</a>
+        </div>
+    </div>
+</body>
+</html>

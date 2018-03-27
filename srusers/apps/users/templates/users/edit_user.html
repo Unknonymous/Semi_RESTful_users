@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'users/css/styles.css' %}">
+    <!-- <link rel="stylesheet" href="C:\Users\user\Documents\CodingDojo\Django\Holder12\srusers\apps\users\static\users\css\styles.css"> -->
+    <title>Users Index</title>
+</head>
+
+<body>
+
+    <div id="wrapper">
+        <h1>Edit User{{user.id}}</h1>
+        <br><br>
+        {% if messages %}
+            {% for message in messages %}
+                <p class='lite'>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+        <form action="{% url 'users:updateUser' %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="id" value ="{{user.id}}">
+            First name:<br>
+            <input type="text" name="fname" value="{{user.first_name}}"><br>
+            Last name:<br>
+            <input type="text" name="lname" value="{{user.last_name}}"><br>
+            Email:<br>
+            <input type="text" name="email" value="{{user.email}}"><br>
+            <input type="submit" value="Submit" class="bttn">
+        </form>
+        <a href="{% url 'users:list' %}">User List</a>
+    </div>
+    
+    
+</body>
+</html>
